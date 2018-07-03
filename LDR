@@ -1,0 +1,64 @@
+#define L1 A0  //connect LDR to pin A0 #define S1 A1  // IR SENSOR-1 TO pin A1 #define S2 A2  // IR SENSOR-2 TO pin A2 #define S3 A3  // IR SENSOR-3 TO pin A3 #define S4 A4  // IR SENSOR-4 TO pin A4 #define S5 A5  // IR SENSOR-5 TO pin A5                //connect bulb 1-5 as directed below 
+ 
+int ldrFlag  = 0; int ldrValue = 0; int ldrRef   = 500; 
+ 
+// set the reference value for each sensor int ref1 = 500; int ref2 = 500; int ref3 = 500; int ref4 = 500; int ref5 = 500; 
+ 
+int val1 = 0; int val2 = 0; int val3 = 0; int val4 = 0; int val5 = 0; 
+ 
+void setup() {  
+// put your setup code here, to run once:  
+Serial.begin(9600);
+pinMode(13,OUTPUT);  
+digitalWrite(B1,LOW);    
+} 
+ 
+void loop() {   // put your main code here, to run repeatedly:  
+ldrValue = analogRead(L1);    
+val1 = analogRead(S1);   
+val2 = analogRead(S2);   
+val3 = analogRead(S3);  
+val4 = analogRead(S4);  
+val5 = analogRead(S5);    
+
+Serial.print(val1);Serial.print("\t");   
+Serial.print(val2);Serial.print("\t");  
+Serial.print(val3);Serial.print("\t");  
+Serial.print(val4);Serial.print("\t");  
+Serial.print(val5);Serial.print("\t");  
+Serial.print(ldrValue);    
+if(ldrValue > ldrRef) 
+ldrFlag = 0; 
+else             
+ldrFlag = 1;   
+if(ldrFlag == 1) 
+// 10% glow if ldr is off  
+{       Serial.println(     "LDR OFF "); 
+digitalWrite(13,LOW);      
+analogWrite(3,30);      
+analogWrite(5,30);      
+analogWrite(6,30);      
+analogWrite(9,30);       
+analogWrite(10,30);       
+//100% glow when obstacle is sensed     
+//  if(val1>ref1) analogWrite(B1,250);      
+if(val1<ref1) { digitalWrite(3,250);  }    
+if(val2<ref2) { digitalWrite(5,250);  }     
+if(val3<ref3) { digitalWrite(6,250);  }       
+if(val4<ref4) { digitalWrite(9,250);  }       
+if(val5<ref5) { digitalWrite(10,250);  }               
+}   else                    
+//switch off all when ldr is on  
+{ 
+Serial.println(     "LDR ON ");       //analogWrite(B1,0);    
+digitalWrite(13,HIGH);     
+analogWrite(3,0);      
+analogWrite(5,0);       
+analogWrite(6,0);      
+analogWrite(9,0);    
+analogWrite(10,0); 
+} 
+delay(500); 
+} 
+ 
+ 
