@@ -1,0 +1,13 @@
+The transmitter and receiver parts have their own codes. we will be required to download the VirtualWire library written by Mike McCauley. we can download it from the following link:
+
+https://www.pjrc.com/teensy/td_libs_VirtualWire.html
+
+Once you download it, you will have to extract the files, copy-paste the VirtualWire folder into your arduino "libraries" folder. once you have done this, you will be able to include this library by typing #include
+
+Once you have done this, download,understand and verify the sketches given below.
+
+To understand the functions of the VirtualWire library more clearly and to modify your code according to your requirements, visit https://www.pjrc.com/teensy/td_libs_VirtualWire.html.
+
+DOWNLOAD these, important -
+https://cdn.instructables.com/ORIG/FS8/WN48/IQJGB8VO/FS8WN48IQJGB8VO.ino
+https://cdn.instructables.com/ORIG/FJV/7VW1/IQJGB8VP/FJV7VW1IQJGB8VP.ino
